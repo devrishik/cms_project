@@ -195,11 +195,13 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     # Database migration helpers:
     'south',
-    'django_extentions',
+    'django_extensions',
+    'tastypie',
 )
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
+    'core',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
