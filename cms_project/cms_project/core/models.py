@@ -1,14 +1,19 @@
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, AbstractUser
 from django_extensions.db.models import TimeStampedModel
 from django.db import models
 from django.utils.translation import ugettext as _
 
 
-class User(AbstractBaseUser):
+class User(AbstractUser):
 
     ''' User Model '''
 
-    email = models.EmailField(_('Email Address'), unique=True)
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+
+    def get_username(self):
+        return self.email
+    # email = models.EmailField(_('Email Address'), unique=True)
     # TODO
     # Implement Email Verification
     @property
@@ -22,6 +27,7 @@ class User(AbstractBaseUser):
         verbose_name = _('User')
         verbose_name_plural = _('Users')
 
+User._meta.get_field_by_name('email')[0]._unique=True
 
 class Genus(TimeStampedModel):
 
